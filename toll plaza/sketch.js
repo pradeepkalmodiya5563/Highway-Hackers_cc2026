@@ -178,6 +178,65 @@ function draw() {
   triangle(600,150,580,200,620,200);
   triangle(600,550,580,500,620,500);
   
+//toll office 
+  
+  fill(220);
+  rect(180,320,40,40);
+  fill(220);
+  rect(280,320,40,40);
+  fill(220);
+  rect(380,320,40,40);
+  fill(220);
+  rect(480,320,40,40);
+  fill(220);
+  rect(580,320,40,40);
+  
+  //barricade
+  //fill(255,0,0);
+  //rect(200,310,-70,5);
+  //rect(300,310,-70,5);
+  //rect(400,310,-70,5);
+  //rect(500,310,-70,5);
+  
+    // barricade 1
+push();
+translate(200,310);
+rotate(radians(angle));
+fill(255,0,0);
+rect(-70,0,70,5);
+pop();
+
+// barricade 2
+push();
+translate(300,310);
+rotate(radians(angle));
+fill(255,0,0);
+rect(-70,0,70,5);
+pop();
+
+// barricade 3
+push();
+translate(400,310);
+rotate(radians(angle));
+fill(255,0,0);
+rect(-70,0,70,5);
+pop();
+
+// barricade 4
+push();
+translate(500,310);
+rotate(radians(angle));
+fill(255,0,0);
+rect(-70,0,70,5);
+pop();
+  
+  //barricade5
+  push();
+translate(600,310);
+rotate(radians(angle));
+fill(255,0,0);
+rect(-70,0,70,5);
+pop();
 }
 
     
