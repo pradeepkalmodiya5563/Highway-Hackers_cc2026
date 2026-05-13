@@ -495,6 +495,293 @@ class Vehicle {
         320;
 
       activeMessage.timer = 2;
+        // OPEN BARRIER
+
+      if (
+        !this.barrierOpened &&
+        this.timer >= waitTime
+      ) {
+
+        laneAngles[
+          this.laneX
+        ] = 80;
+
+        this.barrierOpened =
+          true;
+
+        this.isWaiting =
+          false;
+
+        this.passed = true;
+      }
+    }
+
+    // MOVE
+
+    else {
+
+      this.y -=
+        this.speed;
+
+      // FIXED BARRIER CLOSE
+
+      if (
+        this.passed &&
+        (
+          this.y +
+          this.h / 2
+        ) < 280
+      ) {
+
+        let canClose = true;
+
+        for (
+          let other
+          of vehicles
+        ) {
+
+          if (
+            other === this
+          )
+            continue;
+
+          if (
+            other.laneX ===
+            this.laneX &&
+            other.y < 500 &&
+            other.y > 200
+          ) {
+
+            canClose = false;
+          }
+        }
+
+        if (canClose) {
+
+          laneAngles[
+            this.laneX
+          ] = 0;
+        }
+      }
+    }
+  }
+
+  display() {
+
+    push();
+
+    let offsetX = 0;
+
+    let offsetY = 0;
+
+    if (
+      this.y > 500 &&
+      this.y < 550
+    ) {
+
+      offsetX =
+        random(-2, 2);
+
+      offsetY =
+        random(-2, 2);
+    }
+
+    translate(
+      this.x + offsetX,
+      this.y + offsetY
+    );
+
+    rectMode(CENTER);
+
+    stroke(0);
+
+    strokeWeight(2);
+
+    // BIKE
+
+    if (
+      this.type === "bike"
+    ) {
+
+      fill(20);
+
+      ellipse(
+        0,
+        -18,
+        18,
+        18
+      );
+
+      ellipse(
+        0,
+        18,
+        18,
+        18
+      );
+
+      strokeWeight(3);
+
+      line(
+        0,
+        -18,
+        0,
+        18
+      );
+
+      fill(220, 0, 0);
+
+      rect(
+        0,
+        0,
+        10,
+        22,
+        4
+      );
+    }
+
+    // EMERGENCY
+
+    else if (
+      this.type ===
+      "emergency"
+    ) {
+
+      fill(255);
+
+      rect(
+        0,
+        0,
+        this.w,
+        this.h,
+        10
+      );
+
+      fill(255, 0, 0);
+
+      rect(
+        0,
+        0,
+        this.w - 4,
+        10
+      );
+
+      if (
+        frameCount % 20 < 10
+      ) {
+
+        fill(
+          255,
+          0,
+          0
+        );
+
+      } else {
+
+        fill(
+          0,
+          0,
+          255
+        );
+      }
+
+      rect(
+        0,
+        -this.h / 2,
+        18,
+        6
+      );
+    }
+
+    // OTHER VEHICLES
+
+    else {
+
+      if (
+        this.type === "car"
+      ) {
+
+        fill(
+          0,
+          102,
+          204
+        );
+      }
+
+      else if (
+        this.type === "bus"
+      ) {
+
+        fill(
+          255,
+          204,
+          0
+        );
+      }
+
+      else {
+
+        fill(
+          200,
+          50,
+          50
+        );
+      }
+
+      rect(
+        0,
+        0,
+        this.w,
+        this.h,
+        10
+      );
+
+      // WINDOWS
+
+      fill(
+        30,
+        30,
+        30,
+        150
+      );
+
+      rect(
+        0,
+        -this.h / 4,
+        this.w - 8,
+        12,
+        2
+      );
+
+      rect(
+        0,
+        this.h / 3,
+        this.w - 8,
+        8,
+        1
+      );
+
+      // LIGHTS
+
+      fill(
+        255,
+        255,
+        150
+      );
+
+      ellipse(
+        -this.w / 3,
+        -this.h / 2 + 2,
+        8,
+        5
+      );
+
+      ellipse(
+        this.w / 3,
+        -this.h / 2 + 2,
+        8,
+        5
+      );
+
   
 
     
