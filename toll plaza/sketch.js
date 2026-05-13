@@ -781,6 +781,97 @@ class Vehicle {
         8,
         5
       );
+       // TYRES
+
+      fill(20);
+
+      rect(
+        -this.w / 2,
+        -this.h / 4,
+        6,
+        12
+      );
+
+      rect(
+        this.w / 2,
+        -this.h / 4,
+        6,
+        12
+      );
+
+      rect(
+        -this.w / 2,
+        this.h / 4,
+        6,
+        12
+      );
+
+      rect(
+        this.w / 2,
+        this.h / 4,
+        6,
+        12
+      );
+    }
+
+    // EXHAUST SMOKE
+
+    noStroke();
+
+    fill(
+      120,
+      120,
+      120,
+      120
+    );
+
+    if (
+      this.type === "bike"
+    ) {
+
+      ellipse(
+        8,
+        18 +
+        random(-2, 2),
+        random(6, 10)
+      );
+
+      ellipse(
+        10,
+        28 +
+        random(-2, 2),
+        random(4, 8)
+      );
+    }
+
+    else {
+
+      ellipse(
+        this.w / 4,
+        this.h / 2 + 8 +
+        random(-2, 2),
+        random(8, 15)
+      );
+
+      ellipse(
+        this.w / 4 + 5,
+        this.h / 2 + 20 +
+        random(-2, 2),
+        random(6, 12)
+      );
+
+      ellipse(
+        this.w / 4 - 5,
+        this.h / 2 + 30 +
+        random(-2, 2),
+        random(5, 10)
+      );
+    }
+
+    pop();
+  }
+}
+
 
   
 
