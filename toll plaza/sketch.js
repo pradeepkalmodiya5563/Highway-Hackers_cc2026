@@ -377,6 +377,124 @@ class Vehicle {
         }
       }
     }
+
+    // BIKE LANE
+
+    if (isBikeLane) {
+
+      this.y -=
+        this.speed;
+
+      return;
+    }
+
+    // EMERGENCY
+
+    if (isEmergency) {
+
+      laneAngles[400] = 80;
+
+      this.y -=
+        this.speed;
+
+      if (
+        (
+          this.y +
+          this.h / 2
+        ) < 280
+      ) {
+
+        laneAngles[400] = 0;
+      }
+
+      return;
+    }
+
+    let waitTime =
+      isFastag
+      ? 180
+      : 420;
+
+    // VEHICLE STOP
+
+    if (
+      !this.passed &&
+      !this.isWaiting &&
+      this.y <= stopPoint
+    ) {
+
+      this.isWaiting = true;
+
+      this.y = stopPoint;
+    }
+
+    // WAITING
+
+    if (this.isWaiting) {
+
+      this.timer++;
+
+      // FASTAG
+
+      if (isFastag) {
+
+        if (
+          this.timer <= 60
+        ) {
+
+          activeMessage.text =
+            "SCANNING";
+        }
+
+        else if (
+          this.timer <= 120
+        ) {
+
+          activeMessage.text =
+            "PAYMENT PROCESSING";
+        }
+
+        else {
+
+          activeMessage.text =
+            "VERIFIED FASTAG PAYMENT";
+        }
+      }
+
+      // MANUAL
+
+      else {
+
+        if (
+          this.timer <= 120
+        ) {
+
+          activeMessage.text =
+            "SCANNING";
+        }
+
+        else if (
+          this.timer <= 300
+        ) {
+
+          activeMessage.text =
+            "PAYMENT PROCESSING";
+        }
+
+        else {
+
+          activeMessage.text =
+            "VERIFIED CASH PAYMENT";
+        }
+      }
+
+      activeMessage.x =
+        this.laneX - 20;
+
+      activeMessage.y =
+        320;
+
+      activeMessage.timer = 2;
   
 
     
