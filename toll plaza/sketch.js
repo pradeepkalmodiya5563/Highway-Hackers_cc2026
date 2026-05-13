@@ -871,6 +871,138 @@ class Vehicle {
     pop();
   }
 }
+// =======================
+// TOLL DESIGN
+// =======================
+
+function drawOriginalLanes() {
+
+  let laneStarts =
+    [80, 180, 280, 380, 480, 580];
+
+  for (let lx of laneStarts) {
+
+    for (
+      let y = 200;
+      y <= 480;
+      y += 40
+    ) {
+
+      fill(
+        255,
+        255,
+        0
+      );
+
+      rect(
+        lx,
+        y,
+        40,
+        20
+      );
+
+      fill(0);
+
+      rect(
+        lx,
+        y + 20,
+        40,
+        20
+      );
+    }
+  }
+
+  fill(220);
+
+  for (
+    let x of
+    [
+      80,
+      180,
+      280,
+      380,
+      480,
+      580
+    ]
+  ) {
+
+    rect(
+      x,
+      320,
+      40,
+      40
+    );
+  }
+
+  fill(
+    255,
+    255,
+    0
+  );
+
+  let centers =
+    [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600
+    ];
+
+  for (let c of centers) {
+
+    triangle(
+      c,
+      150,
+      c - 20,
+      200,
+      c + 20,
+      200
+    );
+
+    triangle(
+      c,
+      550,
+      c - 20,
+      500,
+      c + 20,
+      500
+    );
+  }
+}
+
+function drawBarricade(
+  xPos,
+  currentAngle
+) {
+
+  push();
+
+  translate(
+    xPos,
+    310
+  );
+
+  rotate(
+    radians(currentAngle)
+  );
+
+  fill(
+    255,
+    0,
+    0
+  );
+
+  rect(
+    -70,
+    0,
+    70,
+    8
+  );
+
+  pop();
+}
 
 
   
