@@ -245,6 +245,138 @@ function draw() {
     pop();
   }
 }
+// =======================
+// VEHICLE CLASS
+// =======================
+
+class Vehicle {
+
+  constructor(
+    x,
+    y,
+    type,
+    speed
+  ) {
+
+    this.laneX = x;
+
+    this.x = x - 50;
+
+    this.y = y;
+
+    this.type = type;
+
+    this.speed = speed;
+
+    this.w = 40;
+
+    this.timer = 0;
+
+    this.isWaiting = false;
+
+    this.passed = false;
+
+    this.barrierOpened = false;
+
+    // SIZE
+
+    if (type === "bike") {
+
+      this.w = 22;
+
+      this.h = 55;
+    }
+
+    else if (
+      type === "car"
+    ) {
+
+      this.h = 70;
+    }
+
+    else if (
+      type === "bus"
+    ) {
+
+      this.h = 110;
+    }
+
+    else if (
+      type === "emergency"
+    ) {
+
+      this.w = 42;
+
+      this.h = 75;
+    }
+
+    else {
+
+      this.h = 140;
+    }
+  }
+
+  update() {
+
+    let stopPoint =
+      (
+        this.type ===
+        "truck"
+      )
+      ? 430
+      : 400;
+
+    let isBikeLane =
+      (
+        this.laneX === 100
+      );
+
+    let isEmergency =
+      (
+        this.type ===
+        "emergency"
+      );
+
+    let isFastag =
+      (
+        this.laneX >= 500
+      );
+
+    // VEHICLE WAIT FIX
+
+    for (
+      let other of vehicles
+    ) {
+
+      if (other === this)
+        continue;
+
+      if (
+        other.laneX ===
+        this.laneX
+      ) {
+
+        if (
+          other.y < this.y
+        ) {
+
+          let distance =
+            this.y -
+            other.y;
+
+          let safeGap =
+            other.h + 80;
+
+          if (
+            distance <
+            safeGap
+          ) {
+
+            return;
+          }
+        }
+      }
+    }
   
 
     
