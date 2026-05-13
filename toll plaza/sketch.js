@@ -1003,6 +1003,196 @@ function drawBarricade(
 
   pop();
 }
+function drawRoadLines() {
+
+  stroke(0);
+
+  let xC =
+    [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600
+    ];
+
+  for (let x of xC) {
+
+    line(
+      x - 20,
+      500,
+      x,
+      height
+    );
+
+    line(
+      x + 20,
+      500,
+      x,
+      height
+    );
+
+    line(
+      x - 20,
+      200,
+      x,
+      30
+    );
+
+    line(
+      x + 20,
+      200,
+      x,
+      30
+    );
+
+    for (
+      let i = 0;
+      i <= height;
+      i += 40
+    ) {
+
+      line(
+        x,
+        700 + i,
+        x,
+        720 + i
+      );
+    }
+
+    line(
+      x,
+      30,
+      x,
+      0
+    );
+  }
+}
+
+function drawSpeedBreakers() {
+
+  let centers =
+    [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600
+    ];
+
+  for (let x of centers) {
+
+    push();
+
+    rectMode(CENTER);
+
+    fill(80);
+
+    rect(
+      x - 50,
+      525,
+      40,
+      12,
+      4
+    );
+
+    stroke(
+      255,
+      255,
+      0
+    );
+
+    line(
+      x - 65,
+      522,
+      x - 35,
+      522
+    );
+
+    line(
+      x - 65,
+      525,
+      x - 35,
+      525
+    );
+
+    line(
+      x - 65,
+      528,
+      x - 35,
+      528
+    );
+
+    pop();
+  }
+}
+
+function drawLaneLabels() {
+
+  textAlign(CENTER);
+
+  textSize(14);
+
+  textStyle(BOLD);
+
+  fill(
+    150,
+    0,
+    150
+  );
+
+  text(
+    "BIKE",
+    100,
+    250
+  );
+
+  fill(0);
+
+  text(
+    "MANUAL",
+    200,
+    250
+  );
+
+  text(
+    "MANUAL",
+    300,
+    250
+  );
+
+  fill(
+    255,
+    0,
+    0
+  );
+
+  text(
+    "EMERGENCY",
+    400,
+    250
+  );
+
+  fill(
+    0,
+    50,
+    150
+  );
+
+  text(
+    "FASTAG",
+    500,
+    250
+  );
+
+  text(
+    "FASTAG",
+    600,
+    250
+  );
+}
 
 
   
