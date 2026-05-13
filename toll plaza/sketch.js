@@ -99,6 +99,64 @@ function addEmergencyVehicle() {
     )
   );
 }
+function changeLaneForBike() {
+
+  if (
+    vehicleSelect.value() ===
+    "bike"
+  ) {
+
+    laneSelect.disable();
+
+  } else {
+
+    laneSelect.enable();
+  }
+}
+
+function addVehicle() {
+
+  let type =
+    vehicleSelect.value();
+
+  let lane;
+
+  // BIKE LANE
+  if (type === "bike") {
+
+    lane = 100;
+
+  } else {
+
+    lane =
+      int(
+        laneSelect.value()
+      );
+  }
+
+  let speed = 2;
+
+  if (type === "car")
+    speed = 2.5;
+
+  if (type === "bus")
+    speed = 1.5;
+
+  if (type === "truck")
+    speed = 1.2;
+
+  if (type === "bike")
+    speed = 3.2;
+
+  vehicles.push(
+    new Vehicle(
+      lane,
+      height,
+      type,
+      speed
+    )
+  );
+}
   
 
     
