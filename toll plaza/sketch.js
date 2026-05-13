@@ -157,6 +157,94 @@ function addVehicle() {
     )
   );
 }
+function draw() {
+
+  background(150);
+
+  drawOriginalLanes();
+
+  drawBarricade(
+    200,
+    laneAngles[200]
+  );
+
+  drawBarricade(
+    300,
+    laneAngles[300]
+  );
+
+  drawBarricade(
+    400,
+    laneAngles[400]
+  );
+
+  drawBarricade(
+    500,
+    laneAngles[500]
+  );
+
+  drawBarricade(
+    600,
+    laneAngles[600]
+  );
+
+  drawRoadLines();
+
+  drawSpeedBreakers();
+
+  drawLaneLabels();
+
+  // VEHICLES
+  for (let v of vehicles) {
+
+    v.update();
+
+    v.display();
+  }
+
+  // POPUP
+  if (
+    activeMessage.timer > 0
+  ) {
+
+    push();
+
+    rectMode(CENTER);
+
+    textAlign(
+      CENTER,
+      CENTER
+    );
+
+    fill(0, 150, 0);
+
+    stroke(255);
+
+    rect(
+      activeMessage.x,
+      activeMessage.y - 40,
+      240,
+      35,
+      5
+    );
+
+    fill(255);
+
+    textSize(12);
+
+    textStyle(BOLD);
+
+    text(
+      activeMessage.text,
+      activeMessage.x,
+      activeMessage.y - 40
+    );
+
+    activeMessage.timer--;
+
+    pop();
+  }
+}
   
 
     
