@@ -60,7 +60,45 @@ function setup() {
     createButton(
       "START VEHICLE"
     );
-  }
+  startButton.position(
+    280,
+    20
+  );
+
+  startButton.mousePressed(
+    addVehicle
+  );
+
+  // EMERGENCY VEHICLE
+  setInterval(
+    addEmergencyVehicle,
+    10000
+  );
+}
+
+// =======================
+// AUTO RESIZE
+// =======================
+
+function windowResized() {
+
+  resizeCanvas(
+    windowWidth,
+    windowHeight
+  );
+}
+
+function addEmergencyVehicle() {
+
+  vehicles.push(
+    new Vehicle(
+      400,
+      height,
+      "emergency",
+      4.5
+    )
+  );
+}
   
 
     
