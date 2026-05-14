@@ -1,5 +1,4 @@
- 
-    // =======================
+// =======================
 // TOLL PLAZA SYSTEM
 // =======================
 
@@ -46,20 +45,18 @@ function setup() {
   laneSelect = createSelect();
   laneSelect.position(150, 20);
 
-  laneSelect.option("200");
-  laneSelect.option("300");
-  laneSelect.option("400");
-  laneSelect.option("500");
-  laneSelect.option("600");
-
   // BIKE AUTO LANE
   vehicleSelect.changed(changeLaneForBike);
+
+  // INITIAL OPTIONS
+  changeLaneForBike();
 
   // START BUTTON
   startButton =
     createButton(
       "START VEHICLE"
     );
+
   startButton.position(
     280,
     20
@@ -99,18 +96,36 @@ function addEmergencyVehicle() {
     )
   );
 }
+
+// =======================
+// CHANGE LANE OPTIONS
+// =======================
+
 function changeLaneForBike() {
 
-  if (
-    vehicleSelect.value() ===
-    "bike"
-  ) {
+  let type =
+    vehicleSelect.value();
+
+  // RESET OPTIONS
+  laneSelect.elt.innerHTML = "";
+
+  // BIKE
+  if (type === "bike") {
 
     laneSelect.disable();
 
-  } else {
+    laneSelect.option("100");
+  }
+
+  // OTHER VEHICLES
+  else {
 
     laneSelect.enable();
+
+    laneSelect.option("200");
+    laneSelect.option("300");
+    laneSelect.option("500");
+    laneSelect.option("600");
   }
 }
 
@@ -157,6 +172,7 @@ function addVehicle() {
     )
   );
 }
+
 function draw() {
 
   background(150);
@@ -245,6 +261,7 @@ function draw() {
     pop();
   }
 }
+
 // =======================
 // VEHICLE CLASS
 // =======================
@@ -495,7 +512,8 @@ class Vehicle {
         320;
 
       activeMessage.timer = 2;
-        // OPEN BARRIER
+
+      // OPEN BARRIER
 
       if (
         !this.barrierOpened &&
@@ -760,7 +778,7 @@ class Vehicle {
         1
       );
 
-      // LIGHTS
+      // FRONT LIGHTS
 
       fill(
         255,
@@ -781,7 +799,33 @@ class Vehicle {
         8,
         5
       );
-       // TYRES
+
+      // BRAKE LIGHT
+
+      if (
+        this.isWaiting &&
+        this.type !== "bike" &&
+        this.type !== "emergency"
+      ) {
+
+        fill(255, 0, 0);
+
+        ellipse(
+          -this.w / 3,
+          this.h / 2 - 4,
+          10,
+          8
+        );
+
+        ellipse(
+          this.w / 3,
+          this.h / 2 - 4,
+          10,
+          8
+        );
+      }
+
+      // TYRES
 
       fill(20);
 
@@ -871,6 +915,7 @@ class Vehicle {
     pop();
   }
 }
+
 // =======================
 // TOLL DESIGN
 // =======================
@@ -1003,6 +1048,7 @@ function drawBarricade(
 
   pop();
 }
+
 function drawRoadLines() {
 
   stroke(0);
@@ -1047,20 +1093,6 @@ function drawRoadLines() {
       30
     );
 
-    for (
-      let i = 0;
-      i <= height;
-      i += 40
-    ) {
-
-      line(
-        x,
-        700 + i,
-        x,
-        720 + i
-      );
-    }
-
     line(
       x,
       30,
@@ -1096,33 +1128,6 @@ function drawSpeedBreakers() {
       40,
       12,
       4
-    );
-
-    stroke(
-      255,
-      255,
-      0
-    );
-
-    line(
-      x - 65,
-      522,
-      x - 35,
-      522
-    );
-
-    line(
-      x - 65,
-      525,
-      x - 35,
-      525
-    );
-
-    line(
-      x - 65,
-      528,
-      x - 35,
-      528
     );
 
     pop();
@@ -1193,9 +1198,3 @@ function drawLaneLabels() {
     250
   );
 }
-
-
-  
-
-    
-
